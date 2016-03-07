@@ -1,13 +1,31 @@
 一个富有动感的 Sheet,
-[github](https://github.com/zzz40500/AndroidSweetSheet)
 先发两张图:
 ![原型.GIF](https://github.com/zzz40500/AndroidSweetSheet/raw/master/screenshot/Design.gif)
 
 ![效果图.gif](https://github.com/zzz40500/AndroidSweetSheet/raw/master/screenshot/SweetSheet.gif)
 
-###Usage:
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidSweetSheet-green.svg?style=flat)](https://android-arsenal.com/details/1/2271)
-MainActivity.class
+
+[![Android Gems](http://www.android-gems.com/badge/zzz40500/AndroidSweetSheet.svg?branch=master)](http://www.android-gems.com/lib/zzz40500/AndroidSweetSheet)
+
+[![我的微博](http://www.easyicon.net/api/resizeApi.php?id=1164436&size=24)](http://weibo.com/u/5579192921/home?wvr=5)
+
+###gradle      
+/build.gradle
+~~~
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+~~~
+/app/build.gradle
+~~~
+compile 'com.github.zzz40500:AndroidSweetSheet:1.1.0'
+~~~
+###Usage:
+
 ~~~
 
 // SweetSheet 控件,根据 rl 确认位置
@@ -68,11 +86,7 @@ view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
     }
 
 ~~~
-
-###gradle
-~~~
-在等等....
-~~~
+ 
 
 ###v1.1(版本说明)
 1. 去掉之前ViewPager 使用FragmentStatePagerAdapter 做为它的适配器.

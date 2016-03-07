@@ -44,6 +44,7 @@ public class CustomDelegate extends Delegate {
     private ValueAnimator mContentViewValueAnimation;
 
     private int mContentViewHeight;
+    private int sweetSheetColor;
 
 
     public CustomDelegate(boolean dragEnable, AnimationType contentViewAnimationType) {
@@ -64,6 +65,7 @@ public class CustomDelegate extends Delegate {
                 .inflate(R.layout.layout_custom_sweet, null, false);
 
         mSweetView = (SweetView) rootView.findViewById(R.id.sv);
+	mSweetView.setSweetSheetColor(sweetSheetColor);
         mFreeGrowUpParentRelativeLayout = (FreeGrowUpParentRelativeLayout) rootView.findViewById(R.id.freeGrowUpParentF);
         mContentRL = (RelativeLayout) rootView.findViewById(R.id.rl);
         sliderIm = (CRImageView) rootView.findViewById(R.id.sliderIM);
@@ -121,6 +123,9 @@ public class CustomDelegate extends Delegate {
         ViewGroup.LayoutParams lp =
                 new ViewGroup.LayoutParams
                         (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        if (mRootView.getParent() != null) {
+            mParentVG.removeView(mRootView);
+        }
         mParentVG.addView(mRootView, lp);
         mSweetView.show();
     }
@@ -175,11 +180,15 @@ public class CustomDelegate extends Delegate {
         public void onEnd() {
 
 
-            if (mIsDragEnable) {
-                sliderIm.setVisibility(View.VISIBLE);
-                sliderIm.circularReveal(sliderIm.getWidth() / 2, sliderIm.getHeight() / 2, 0, sliderIm.getWidth());
+            if (mStatus == SweetSheet.Status.SHOWING) {
+                mStatus = SweetSheet.Status.SHOW;
+
+                if(mIsDragEnable) {
+                    sliderIm.setVisibility(View.VISIBLE);
+                    sliderIm.circularReveal(sliderIm.getWidth() / 2, sliderIm.getHeight() / 2, 0, sliderIm.getWidth());
+                }
             }
-            mStatus = SweetSheet.Status.SHOW;
+
         }
 
         @Override
@@ -270,5 +279,9 @@ public class CustomDelegate extends Delegate {
         AlphaAnimation,
         //自定义的动画,需要调用
         Custom
+    }
+
+    public void setSweetSheetColor(int sweetSheetColor) {
+        this.sweetSheetColor = sweetSheetColor;
     }
 }
